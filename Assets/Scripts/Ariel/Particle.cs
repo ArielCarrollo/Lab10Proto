@@ -8,7 +8,6 @@ public class Particle : MonoBehaviour
     private float currentLife;
     private SpriteRenderer spriteRenderer;
 
-    // Referencia al Scriptable Object (Flyweight)
     private ParticleSettings settings;
 
     public void Initialize(Vector2 dir, float spd, ParticleSettings settings)
@@ -23,7 +22,6 @@ public class Particle : MonoBehaviour
         currentLife = lifeTime;
     }
 
-    // Update() permanece igual
     void Update()
     {
         transform.position += (Vector3)(direction * speed * Time.deltaTime);

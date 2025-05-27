@@ -22,7 +22,6 @@ public class ParticleSpawner : MonoBehaviour
 
         Vector2 spawnPos = transform.position;
 
-        // Selecciona un Flyweight aleatorio
         ParticleSettings selectedSettings =
             particleSettings[Random.Range(0, particleSettings.Length)];
 
@@ -30,5 +29,12 @@ public class ParticleSpawner : MonoBehaviour
         float speed = Random.Range(1f, 3f);
 
         ParticleManager.SpawnParticle(spawnPos, dir, speed, selectedSettings);
+    }
+    public void SpawnMassiveParticles(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            SpawnRandomParticle();
+        }
     }
 }
