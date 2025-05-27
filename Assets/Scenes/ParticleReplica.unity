@@ -409,7 +409,7 @@ MonoBehaviour:
   particleSettings:
   - {fileID: 11400000, guid: 703576a4f09d84d4bab0098e68eecc83, type: 2}
   - {fileID: 11400000, guid: a6223620f8e30af44a53c8a40ed89a13, type: 2}
-  spawnRate: 0.1
+  spawnRate: 0.001
 --- !u!4 &588928012
 Transform:
   m_ObjectHideFlags: 0
