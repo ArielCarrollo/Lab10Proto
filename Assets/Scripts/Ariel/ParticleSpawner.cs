@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ParticleSpawner : MonoBehaviour
 {
-    public Sprite[] possibleTextures;
+    public ParticleSettings[] particleSettings;
     public float spawnRate = 0.1f;
     private float timer;
 
@@ -18,13 +18,17 @@ public class ParticleSpawner : MonoBehaviour
 
     void SpawnRandomParticle()
     {
+        if (particleSettings.Length == 0) return;
+
         Vector2 spawnPos = transform.position;
-        Color color = new Color(Random.value, Random.value, Random.value);
-        Sprite texture = possibleTextures[Random.Range(0, possibleTextures.Length)];
+
+        // Selecciona un Flyweight aleatorio
+        ParticleSettings selectedSettings =
+            particleSettings[Random.Range(0, particleSettings.Length)];
+
         Vector2 dir = Random.insideUnitCircle.normalized;
         float speed = Random.Range(1f, 3f);
 
-        ParticleManager.Instance.SpawnParticle(spawnPos, color, texture, dir, speed);
+        ParticleManager.SpawnParticle(spawnPos, dir, speed, selectedSettings);
     }
 }
-

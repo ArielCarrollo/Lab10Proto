@@ -1,21 +1,23 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class ParticleManager : MonoBehaviour
 {
-    public static ParticleManager Instance;
     public GameObject particlePrefab;
+    private static GameObject s_particlePrefab;
+    private static Transform s_transform;
 
     private void Awake()
     {
-        Instance = this;
+        s_particlePrefab = particlePrefab;
+        s_transform = transform;
     }
 
-    public void SpawnParticle(Vector2 position, Color color, Sprite texture, Vector2 direction, float speed)
+    public static void SpawnParticle(Vector2 position, Vector2 direction,
+                                   float speed, ParticleSettings settings)
     {
-        GameObject newParticle = Instantiate(particlePrefab, position, Quaternion.identity);
-        newParticle.transform.parent = this.transform;
+        GameObject newParticle = Instantiate(s_particlePrefab, position, Quaternion.identity);
+        newParticle.transform.parent = s_transform;
         Particle p = newParticle.GetComponent<Particle>();
-        p.Initialize(color, texture, direction, speed);
+        p.Initialize(direction, speed, settings);
     }
 }
